@@ -12,9 +12,9 @@ jobs:
           node-version: 16
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
-      - uses: yarn install --frozen-lockfile
-      - uses: yarn prepack
-      - uses: yarn release-it
+      - run: yarn install --frozen-lockfile
+      - run: yarn prepack
+      - run: yarn release-it
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
