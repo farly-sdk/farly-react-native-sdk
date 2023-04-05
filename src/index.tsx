@@ -94,3 +94,5 @@ const Farly = {
 };
 
 export default Farly;
+
+export type { FeedElement, OfferWallRequest };
