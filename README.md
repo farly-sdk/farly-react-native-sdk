@@ -4,6 +4,8 @@ Farly SDK for react-native
 
 ## Installation
 
+[![alt npm version](https://img.shields.io/npm/v/react-native-farly-sdk)](https://www.npmjs.com/package/react-native-farly-sdk)
+
 ```sh
 yarn add react-native-farly-sdk
 ```
