@@ -2,6 +2,8 @@
 
 Farly SDK for react-native
 
+The full documentation is accessible at https://mobsuccess.notion.site/Farly-React-Native-SDK-82afeefd32e2423d93bf8c8e73846e14
+
 ## Installation
 
 [![alt npm version](https://img.shields.io/npm/v/react-native-farly-sdk)](https://www.npmjs.com/package/react-native-farly-sdk)
