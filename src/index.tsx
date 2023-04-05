@@ -48,11 +48,13 @@ const setup = ({
  * ```
  *
  * _**On Android**_
- *
- * //TODO: Add Android implementation
+ * Android does not support requesting authorization to use the advertising ID, so this method always returns null on Android.
  *
  */
-const requestAdvertisingIdAuthorization = (): Promise<boolean> => {
+const requestAdvertisingIdAuthorization = (): Promise<boolean | null> => {
+  if (Platform.OS !== 'ios') {
+    return Promise.resolve(null);
+  }
   return FarlySdk.requestAdvertisingIdAuthorization();
 };
 

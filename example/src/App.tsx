@@ -5,6 +5,7 @@ import {
   Button,
   Image,
   Linking,
+  Platform,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -27,8 +28,9 @@ const request: OfferWallRequest = {
 
 export default function App() {
   const [farlySetup, setFarlySetup] = React.useState(false);
-  const [isAdvertisingAuthorized, setIsAdvertisingAuthorized] =
-    React.useState(false);
+  const [isAdvertisingAuthorized, setIsAdvertisingAuthorized] = React.useState<
+    boolean | null
+  >();
   const [url, setUrl] = React.useState('');
   const [offerwallOffers, setOfferwallOffers] = React.useState<FeedElement[]>(
     []
@@ -73,9 +75,12 @@ export default function App() {
           <Text style={{ fontSize: 17 }}>
             Farly setup: {farlySetup ? 'yes' : 'no'}
           </Text>
-          <Text style={{ fontSize: 17 }}>
-            Advertising ID authorized: {isAdvertisingAuthorized ? 'yes' : 'no'}
-          </Text>
+          {Platform.OS === 'ios' && (
+            <Text style={{ fontSize: 17 }}>
+              Advertising ID authorized:{' '}
+              {isAdvertisingAuthorized ? 'yes' : 'no'}
+            </Text>
+          )}
           <View style={{ paddingVertical: 32 }}>
             <Button
               title="Show offerwall in browser"
