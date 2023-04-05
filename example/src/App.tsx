@@ -13,8 +13,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import Farly from 'react-native-farly-sdk';
-import type { FeedElement, OfferWallRequest } from 'src/types';
+import Farly, { FeedElement, OfferWallRequest } from 'react-native-farly-sdk';
 
 const request: OfferWallRequest = {
   userId: '123',
@@ -27,7 +26,7 @@ const request: OfferWallRequest = {
 };
 
 export default function App() {
-  const [farlySetup, setFarlySetup] = React.useState(false);
+  const [farlyIsSetup, setFarlyIsSetup] = React.useState(false);
   const [isAdvertisingAuthorized, setIsAdvertisingAuthorized] = React.useState<
     boolean | null
   >();
@@ -41,8 +40,7 @@ export default function App() {
       apiKey: '',
       publisherId: '',
     }).then(() => {
-      console.log('FarlySdk did setup');
-      setFarlySetup(true);
+      setFarlyIsSetup(true);
     });
   }, []);
 
@@ -54,26 +52,26 @@ export default function App() {
   }, []);
 
   React.useEffect(() => {
-    if (farlySetup) {
+    if (farlyIsSetup) {
       Farly.getHostedOfferwallUrl(request).then((_url) => {
         setUrl(_url ?? '');
       });
     }
-  }, [farlySetup]);
+  }, [farlyIsSetup]);
   React.useEffect(() => {
-    if (farlySetup) {
+    if (farlyIsSetup) {
       Farly.getOfferwall(request).then((offerwall) => {
         setOfferwallOffers(offerwall);
       });
     }
-  }, [farlySetup]);
+  }, [farlyIsSetup]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
         <View style={styles.container}>
           <Text style={{ fontSize: 17 }}>
-            Farly setup: {farlySetup ? 'yes' : 'no'}
+            Farly setup: {farlyIsSetup ? 'yes' : 'no'}
           </Text>
           {Platform.OS === 'ios' && (
             <Text style={{ fontSize: 17 }}>
