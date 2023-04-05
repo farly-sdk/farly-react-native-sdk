@@ -13,6 +13,8 @@ jobs:
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
       - run: yarn install --frozen-lockfile
+      - run: yarn typecheck
+      - run: yarn lint
       - run: yarn prepack
       - run: yarn release-it
         env:
