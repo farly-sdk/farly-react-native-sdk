@@ -119,8 +119,10 @@ export default function App() {
               key={offer.id}
               style={{
                 flexDirection: 'row',
-                paddingVertical: 4,
+                paddingVertical: 16,
+                paddingLeft: 8,
                 borderBottomWidth: 1,
+                borderBottomColor: '#ccc',
               }}
               onPress={() => Linking.openURL(offer.link)}
             >
@@ -129,11 +131,41 @@ export default function App() {
                 style={{ width: 40, height: 40 }}
               />
               <View style={{ flex: 1, paddingHorizontal: 8 }}>
-                <Text style={{ fontWeight: 'bold' }}>{offer.name}</Text>
-                <Text>{offer.smallDescription}</Text>
-                <Text style={{ fontWeight: 'bold' }}>
-                  {offer.actions[0]?.text}
-                </Text>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <View style={{ flex: 1 }}>
+                    <Text style={{ fontWeight: 'bold' }}>{offer.name}</Text>
+                    <Text style={{ fontStyle: 'italic' }}>{offer.os}</Text>
+                    <Text style={{ fontStyle: 'italic' }}>{offer.status}</Text>
+                    <Text>{offer.smallDescription}</Text>
+                  </View>
+                  <View style={{ alignItems: 'flex-end' }}>
+                    <Text style={{ fontWeight: 'bold' }}>
+                      {offer.rewardAmount}
+                    </Text>
+                    <Text>{offer.moneyName}</Text>
+                    {offer.moneyIcon && (
+                      <Image
+                        source={{ uri: offer.moneyIcon }}
+                        style={{ width: 20, height: 20 }}
+                      />
+                    )}
+                  </View>
+                </View>
+                <View>
+                  {offer.actions.map((action, index) => (
+                    <Text style={{ fontWeight: 'bold' }} key={action.id}>
+                      {index + 1 + '. '}
+                      {action.text}
+                      {action.amount > 0 &&
+                        ' —> ' + action.amount + ' ' + (offer.moneyName ?? '')}
+                    </Text>
+                  ))}
+                </View>
               </View>
             </Pressable>
           ))}

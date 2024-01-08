@@ -122,13 +122,19 @@ class FarlySdk: NSObject {
         }
     }
     
-    private func toJson(_ fe: FeedElement) -> [String: Any] {
+    private func toJson(_ fe: FeedElement) -> [String: Any?] {
         let result = [
             "id": fe.id,
             "name": fe.name,
             "devName": fe.devName,
+            "os": fe.os,
+            "status": fe.status,
             "link": fe.link,
             "icon": fe.icon,
+            "priceApp": fe.priceApp,
+            "moneyIcon": fe.moneyIcon,
+            "moneyName": fe.moneyName,
+            "rewardAmount": fe.rewardAmount,
             "smallDescription": fe.smallDescription,
             "smallDescriptionHTML": fe.smallDescriptionHTML,
             "actions": fe.actions.map({ action in
@@ -137,9 +143,14 @@ class FarlySdk: NSObject {
                     "amount": action.amount,
                     "text": action.text,
                     "html": action.html
-                ] as [String: Any]
-            })
-        ] as [String: Any]
+                ] as [String: Any?]
+            }),
+            "totalPayout": fe.totalPayout != nil ? [
+                "amount": fe.totalPayout?.amount,
+                "currency": fe.totalPayout?.currency
+            ] as [String: Any?] : nil,
+            "categories": fe.categories
+        ] as [String: Any?]
         
         return result
     }

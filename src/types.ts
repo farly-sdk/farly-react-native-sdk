@@ -37,13 +37,26 @@ export interface Action {
   html: string;
 }
 
+export interface TotalPayout {
+  amount: number;
+  currency: string;
+}
+
 export interface FeedElement {
   id: string;
   name: string;
   devName: string;
+  os?: string;
+  status?: string;
   link: string;
   icon: string;
+  priceApp?: string;
+  moneyIcon?: string;
+  moneyName?: string;
+  rewardAmount?: number;
   smallDescription: string;
   smallDescriptionHTML: string;
   actions: Action[];
+  totalPayout?: TotalPayout;
+  categories?: string[];
 }
