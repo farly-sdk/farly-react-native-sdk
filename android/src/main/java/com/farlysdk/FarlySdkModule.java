@@ -20,6 +20,7 @@ import com.facebook.react.module.annotations.ReactModule;
 import com.farly.farly.Farly;
 import com.farly.farly.jsonmodel.Action;
 import com.farly.farly.jsonmodel.FeedItem;
+import com.farly.farly.jsonmodel.TotalPayout;
 import com.farly.farly.model.Gender;
 import com.farly.farly.model.OfferWallRequest;
 import com.farly.farly.model.OfferWallRequestBuilder;
@@ -125,6 +126,12 @@ public class FarlySdkModule extends ReactContextBaseJavaModule {
     map.putString("id", feedItem.getId());
     map.putString("name", feedItem.getName());
     map.putString("devName", feedItem.getDevName());
+    map.putString("os", feedItem.getOs());
+    map.putString("status", feedItem.getStatus());
+    map.putString("priceApp", feedItem.getPriceApp());
+    map.putString("moneyIcon", feedItem.getMoneyIcon());
+    map.putString("moneyName", feedItem.getMoneyName());
+    map.putDouble("rewardAmount", feedItem.getRewardAmount());
     map.putString("link", feedItem.getLink());
     map.putString("icon", feedItem.getIcon());
     map.putString("smallDescription", feedItem.getSmallDescription());
@@ -139,6 +146,18 @@ public class FarlySdkModule extends ReactContextBaseJavaModule {
       actions.pushMap(actionMap);
     }
     map.putArray("actions", actions);
+    WritableArray categories = new WritableNativeArray();
+    for (String category : feedItem.getCategories()) {
+      categories.pushString(category);
+    }
+    map.putArray("categories", categories);
+    TotalPayout tp = feedItem.getTotalPayout();
+    if (tp != null) {
+      WritableMap tpMap = new WritableNativeMap();
+      tpMap.putDouble("amount", tp.getAmount());
+      tpMap.putString("currency", tp.getCurrency());
+      map.putMap("totalPayout", tpMap);
+    }
     return map;
   }
 
