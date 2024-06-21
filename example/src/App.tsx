@@ -37,7 +37,6 @@ export default function App() {
 
   React.useEffect(() => {
     Farly.setup({
-      apiKey: '',
       publisherId: '',
     }).then(() => {
       setFarlyIsSetup(true);

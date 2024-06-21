@@ -21,11 +21,10 @@ class FarlySdk: NSObject {
     func setup(_ info: [String: Any],
                resolver resolve: @escaping RCTPromiseResolveBlock,
                rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
-        guard let apiKey = info["apiKey"] as? String, let publisherId = info["publisherId"] as? String else {
-            reject("ERROR", "Missing apiKey or publisherId", nil)
+        guard let publisherId = info["publisherId"] as? String else {
+            reject("ERROR", "Missing publisherId", nil)
             return
         }
-        Farly.shared.apiKey = apiKey
         Farly.shared.publisherId = publisherId
         resolve(nil)
     }
