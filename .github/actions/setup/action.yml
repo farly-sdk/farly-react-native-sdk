@@ -23,6 +23,6 @@ runs:
       if: steps.yarn-cache.outputs.cache-hit != 'true'
       run: |
         corepack enable
-        yarn install --cwd example --frozen-lockfile
-        yarn install --frozen-lockfile
+        yarn install --immutable
+        cd example && yarn install --immutable && cd ..
       shell: bash
