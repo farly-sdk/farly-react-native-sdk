@@ -21,12 +21,11 @@ import Farly from 'react-native-farly-sdk';
 
 // init once in your app
 Farly.setup({
-  apiKey: '',
   publisherId: '',
-})
+});
 
 // iOS only, request tracking
-Farly.requestAdvertisingIdAuthorization()
+Farly.requestAdvertisingIdAuthorization();
 ```
 
 ### Showing offers
@@ -46,16 +45,16 @@ const request: OfferWallRequest = {
 };
 
 // show the offerwall in the system browser (outside of the app)
-Farly.showOfferwallInBrowser(request)
+Farly.showOfferwallInBrowser(request);
 
 // show the offerwall in a webview inside your app
-Farly.showOfferwallInWebview(request)
+Farly.showOfferwallInWebview(request);
 
 // get the url as a string, to open it wherever you want (for example in a custom webview you own)
-const offerwalUrl = await Farly.getHostedOfferwallUrl(request)
+const offerwalUrl = await Farly.getHostedOfferwallUrl(request);
 
 // list offers programmatically (you are responsible to display them)
-const offers = await Farly.getOfferwall(request)
+const offers = await Farly.getOfferwall(request);
 ```
 
 ## Contributing

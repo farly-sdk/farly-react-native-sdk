@@ -21,15 +21,8 @@ const FarlySdk = NativeModules.FarlySdk
 /**
  * Must be called before any other methods
  */
-const setup = ({
-  apiKey,
-  publisherId,
-}: {
-  apiKey: string;
-  publisherId: string;
-}): Promise<void> => {
+const setup = ({ publisherId }: { publisherId: string }): Promise<void> => {
   return FarlySdk.setup({
-    apiKey,
     publisherId,
   });
 };

@@ -45,7 +45,6 @@ public class FarlySdkModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void setup(ReadableMap info, Promise promise) {
-    getInstance().setApiKey(info.getString("apiKey"));
     getInstance().setPublisherId(info.getString("publisherId"));
     promise.resolve(null);
   }
